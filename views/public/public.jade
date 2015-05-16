@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title= where
+    link(rel="stylesheet" href="static/css/normalize.css")
+    link(rel="stylesheet" href="static/css/font-awesome.css")
+    link(rel="stylesheet" href="static/css/styles.css")
+  body
+    include app-root.jade
+    pre!= session
+    script(src="/static/js/jquery.js")
+    script(src="/static/js/logic.js")

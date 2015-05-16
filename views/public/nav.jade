@@ -1,0 +1,4 @@
+nav
+  for nav in navItems
+    - var selectedClass = nav.name.toLowerCase() === where.toLowerCase() ? 'selected' : ''
+    a(href=nav.href, class=selectedClass )= nav.name

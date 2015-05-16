@@ -1,0 +1,73 @@
+doctype html
+html
+  head
+    title= where
+    link(rel="stylesheet" href="/static/css/normalize.css")
+    link(rel="stylesheet" href="/static/css/font-awesome.css")
+    link(rel="stylesheet" href="/static/css/styles.css")
+  body
+    div#app-root
+      header
+        span.logo Bios
+          button(id="nav-pane-toggle", class="fa fa-bars key")
+        input(type="search")
+        button(type="button", class="key fa fa-search")
+      div.pane-set
+        div(id="navigation-pane").nav-pane
+          nav
+            for nav in navItems
+              - var selectedClass = nav.name.toLowerCase() === where.toLowerCase() ? 'selected' : ''
+              a(href=nav.href, class=selectedClass )
+                i(class="fa fa-" + nav.iconClass)
+                = nav.name
+
+            div.separator
+
+            a(href="/logout")
+              i(class="fa fa-sign-out")
+              | Logout
+        div.content-container
+          div.content
+              h1(class="content-title")= where
+              case where
+                when "dashboard"
+                  | DASHBOARD HERE
+                when "settings"
+                  | SETTINGS HERE
+                when "bios"
+                  for bio in allBios
+                    article.bio
+                      - var idSubstr = "bio-_id:" + bio._id
+                      - var titleId = idSubstr + "-title"
+                      - var nameFirstId =  idSubstr + "-name.first"
+                      - var nameMiddleId =  idSubstr + "-name.middle"
+                      - var nameLastId =  idSubstr + "-name.last"
+                      - var titleVal = typeof bio.title !== 'undefined' ? bio.title : ''
+                      - var nameFirstVal  = typeof bio.name !== 'undefined' && typeof bio.name.first !== 'undefined' ? bio.name.first : ''
+                      - var nameMiddleVal  = typeof bio.name !== 'undefined' && typeof bio.name.middle !== 'undefined' ? bio.name.middle : ''
+                      - var nameLastVal  = typeof bio.name !== 'undefined' && typeof bio.name.last !== 'undefined' ? bio.name.last : ''
+
+                      form(class="stacked", novalidate, id="form-" + idSubstr)
+                        div.input-group
+                          label(for=idSubstr) _id
+                          input(readonly, id=idSubstr, type="text", value=bio._id)
+
+                        div.input-group
+                          label(class="capitalize", for=titleId) title
+                          input(readonly, placeholder="title", id=titleId, type="text", value=titleVal)
+
+                        div.input-set-horizontal
+                          div.input-group
+                            label(class="capitalize", for=nameFirstId) first name
+                            input(readonly, id=nameFirstId, type="text", value=nameFirstVal)
+
+                          div.input-group
+                            label(class="capitalize", for=nameMiddleId) middle name
+                            input(readonly, id=nameMiddleId, type="text", value=firstNameVal)
+
+                          div.input-group
+                            label(class="capitalize", for=nameLastId) last name
+                            input(readonly, id=nameLastId, type="text", value=lastNameVal)
+    pre!= session
+    script(src="/static/js/jquery.js")
+    script(src="/static/js/logic.js")
