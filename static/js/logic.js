@@ -66,3 +66,25 @@ loginController.setup($('#login-form'));
     $('#navigation-pane').toggleClass('show');
   });
 }());
+
+// ooo dashboard ooo
+
+// modal controller
+var modalController = (function (){
+  var modalContainer = $('.modal'),
+      showClass = 'show';
+
+  return {
+    toggle: function (modalId){
+      $(modalContainer).toggleClass(showClass);
+      $(modalContainer).find('#' + modalId).toggleClass(showClass);
+    }
+  }
+}());
+
+// dashboard->bios:add-bio
+var toggleBiosAddNewBioModal = function(){
+  modalController.toggle('dashboard-bios-modal-addNewBio');
+};
+$('#dashboard-bios-button-addNewBio, #dashboard-bio-modal-button-cancel').click(toggleBiosAddNewBioModal);
+// dashboard->bios->addNewBioModal->cancelButton

@@ -5,13 +5,47 @@ html
     link(rel="stylesheet" href="/static/css/normalize.css")
     link(rel="stylesheet" href="/static/css/font-awesome.css")
     link(rel="stylesheet" href="/static/css/styles.css")
+
   body
     div#app-root
-      header
+      div.modal
+        section(class="modal-screen", id="dashboard-bios-modal-addNewBio")
+          header Add New Bio
+
+          div(class="body")
+            form(class="stacked", novalidate, id="form-add-new-bio")
+              div.input-group
+                label(class="capitalize", for="form-bios-add-new-bio-title") title
+                input(placeholder="title", name="title", id="form-bios-add-new-bio-title", type="text", value="")
+
+              div.input-set-horizontal
+                div.input-group
+                  label(class="capitalize", for="form-bios-add-new-bio-name-first") first name
+                  input(name="first-name", id="form-bios-add-new-bio-name-first", type="text", value="")
+
+                div.input-group
+                  label(class="capitalize", for="form-bios-add-new-bio-name-middle") middle name
+                  input(name="middle-name", id="form-bios-add-new-bio-name-middle", type="text", value="")
+
+                div.input-group
+                  label(class="capitalize", for="form-bios-add-new-bio-name-last") last name
+                  input(name="last-name", id="form-bios-add-new-bio-name-last", type="text", value="")
+
+          footer
+            button(class="key right")
+              i(class="fa fa-check")
+              | &nbsp;Save
+
+            button(id="dashboard-bio-modal-button-cancel", class="right")
+              i(class="fa fa-times")
+              | &nbsp;Cancel
+
+      header.app-header
         span.logo Bios
           button(id="nav-pane-toggle", class="fa fa-bars key")
         input(type="search")
         button(type="button", class="key fa fa-search")
+
       div.pane-set
         div(id="navigation-pane").nav-pane
           nav
@@ -26,15 +60,24 @@ html
             a(href="/logout")
               i(class="fa fa-sign-out")
               | Logout
+
         div.content-container
           div.content
               h1(class="content-title")= where
+
               case where
                 when "dashboard"
                   | DASHBOARD HERE
+
                 when "settings"
                   | SETTINGS HERE
+
                 when "bios"
+                  div.button-group
+                    button(id="dashboard-bios-button-addNewBio", class="right key")
+                      i(class="fa fa-plus")
+                      | &nbsp;Add New
+
                   for bio in allBios
                     article.bio
                       - var idSubstr = "bio-_id:" + bio._id

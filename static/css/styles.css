@@ -3,11 +3,77 @@ body{
   background:#e7e7e7;
 
 }
+.show{
+  display:block;
+}
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  z-index:100;
+  display:none;
+}
+.modal.show, .modal-screen.show{
+  display:block;
+}
+.modal-screen{
+  position:fixed;
+  top:3rem;
+  background:red;
+  width:65%;
+  left:50%;
+  margin: 0 0 0 -32.5%;
+  height:75%;
+  overflow:hidden;
+  display:none;
+}
 
+.modal-screen header, .modal-screen footer{
+  height:2.6rem;
+  box-sizing:border-box;
+
+}
+.modal-screen header{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  background:#1c78e2;
+  color:white;
+  text-align:center;
+  font-size:1.2rem;
+  line-height:1.2rem;
+  padding-top:0.6rem;
+}
+
+.modal-screen footer{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  background: #f0f0f0;
+  padding-top:0.4rem;
+}
+
+.modal-screen .body {
+  box-sizing: border-box;
+  padding: 1.4rem 2rem;
+  position:absolute;
+  top:2.6rem;
+  bottom:2.6rem;
+  left:0;
+  right:0;
+  background:#e9eae9;
+  overflow:hidden;
+  overflow-y:auto;
+}
 #app-root{
 
 }
-header{
+header.app-header{
   height:3rem;
   background:#1c78e2;
   text-align:left;
@@ -21,6 +87,7 @@ header{
   left:0;
   right:0;
   width:100%;
+  z-index:80;
 }
 
 header input[type="search"]{
@@ -159,12 +226,11 @@ button{
   font-size:1rem;
   border-radius:0;
   line-height:1rem;
-  padding:0.3rem 0.4rem;
+  padding:0.4rem 0.8rem;
   box-sizing:border-box;
   border:none;
   margin:0;
-    margin-right:0.2rem;
-    margin-bottom:0.2rem;
+    margin-right:0.6rem;
 }
 
 button:hover{
